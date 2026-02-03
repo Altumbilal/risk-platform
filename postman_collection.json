@@ -1,0 +1,203 @@
+{
+    "info": {
+        "name": "Risk Platform API",
+        "description": "Collection for testing the Risk Scoring Platform",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Health Checks",
+            "item": [
+                {
+                    "name": "Gateway Health",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{gateway_url}}/health",
+                            "host": ["{{gateway_url}}"],
+                            "path": ["health"]
+                        }
+                    }
+                },
+                {
+                    "name": "Anomaly Service Health",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{anomaly_url}}/health",
+                            "host": ["{{anomaly_url}}"],
+                            "path": ["health"]
+                        }
+                    }
+                },
+                {
+                    "name": "Risk Service Health",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{risk_url}}/health",
+                            "host": ["{{risk_url}}"],
+                            "path": ["health"]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Transactions",
+            "item": [
+                {
+                    "name": "Process Transaction",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"transaction_id\": \"{{$guid}}\",\n    \"user_id\": \"user-12345\",\n    \"amount\": 1500.00,\n    \"currency\": \"BRL\",\n    \"country\": \"BR\",\n    \"device\": \"mobile\",\n    \"timestamp\": \"{{$isoTimestamp}}\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{gateway_url}}/transactions",
+                            "host": ["{{gateway_url}}"],
+                            "path": ["transactions"]
+                        }
+                    }
+                },
+                {
+                    "name": "Process High Risk Transaction",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"transaction_id\": \"{{$guid}}\",\n    \"user_id\": \"suspicious-user\",\n    \"amount\": 50000.00,\n    \"currency\": \"BTC\",\n    \"country\": \"XX\",\n    \"device\": \"unknown\",\n    \"timestamp\": \"{{$isoTimestamp}}\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{gateway_url}}/transactions",
+                            "host": ["{{gateway_url}}"],
+                            "path": ["transactions"]
+                        }
+                    }
+                },
+                {
+                    "name": "Analyze Risk",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"transaction_id\": \"{{$guid}}\",\n    \"user_id\": \"user-12345\",\n    \"amount\": 2500.00,\n    \"currency\": \"USD\",\n    \"country\": \"US\",\n    \"device\": \"desktop\",\n    \"timestamp\": \"{{$isoTimestamp}}\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{gateway_url}}/risk/analyze",
+                            "host": ["{{gateway_url}}"],
+                            "path": ["risk", "analyze"]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "ML Services Direct",
+            "item": [
+                {
+                    "name": "Anomaly Score",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"amount\": 1500.00,\n    \"currency\": \"BRL\",\n    \"country\": \"BR\",\n    \"device\": \"mobile\",\n    \"hour\": 14,\n    \"day_of_week\": 3,\n    \"user_id\": \"user-123\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{anomaly_url}}/anomaly/score",
+                            "host": ["{{anomaly_url}}"],
+                            "path": ["anomaly", "score"]
+                        }
+                    }
+                },
+                {
+                    "name": "Risk Classify",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"amount\": 1500.00,\n    \"currency\": \"BRL\",\n    \"country\": \"BR\",\n    \"device\": \"mobile\",\n    \"hour\": 14,\n    \"day_of_week\": 3,\n    \"user_id\": \"user-123\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{risk_url}}/risk/classify",
+                            "host": ["{{risk_url}}"],
+                            "path": ["risk", "classify"]
+                        }
+                    }
+                },
+                {
+                    "name": "Model Info - Anomaly",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{anomaly_url}}/model/info",
+                            "host": ["{{anomaly_url}}"],
+                            "path": ["model", "info"]
+                        }
+                    }
+                },
+                {
+                    "name": "Model Info - Risk",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{risk_url}}/model/info",
+                            "host": ["{{risk_url}}"],
+                            "path": ["model", "info"]
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "key": "gateway_url",
+            "value": "http://localhost:8080"
+        },
+        {
+            "key": "anomaly_url",
+            "value": "http://localhost:5001"
+        },
+        {
+            "key": "risk_url",
+            "value": "http://localhost:5002"
+        }
+    ]
+}

@@ -1,0 +1,120 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: risk-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: riskdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - risk-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: risk-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - risk-network
+
+  # PyTorch Anomaly Detection Service
+  ml-anomaly:
+    build:
+      context: ./ml-anomaly-pytorch
+      dockerfile: Dockerfile
+    container_name: risk-ml-anomaly
+    ports:
+      - "5001:5001"
+    environment:
+      - PORT=5001
+      - DEBUG=false
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - risk-network
+
+  # TensorFlow Risk Classification Service
+  ml-risk:
+    build:
+      context: ./ml-risk-tensorflow
+      dockerfile: Dockerfile
+    container_name: risk-ml-risk
+    ports:
+      - "5002:5002"
+    environment:
+      - PORT=5002
+      - DEBUG=false
+      - TF_CPP_MIN_LOG_LEVEL=2
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5002/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - risk-network
+
+  # Go API Gateway
+  gateway:
+    build:
+      context: ./gateway-go
+      dockerfile: Dockerfile
+    container_name: risk-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - POSTGRES_URL=postgres://postgres:postgres@postgres:5432/riskdb?sslmode=disable
+      - REDIS_URL=redis:6379
+      - ANOMALY_SERVICE_URL=http://ml-anomaly:5001
+      - RISK_SERVICE_URL=http://ml-risk:5002
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      ml-anomaly:
+        condition: service_healthy
+      ml-risk:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - risk-network
+
+networks:
+  risk-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:

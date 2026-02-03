@@ -1,0 +1,15 @@
+.git
+.gitignore
+.vscode
+.idea
+*.exe
+*.test
+*.out
+vendor/
+Dockerfile
+.dockerignore
+*.md
+*_test.go
+tests/
+.env
+.env.*

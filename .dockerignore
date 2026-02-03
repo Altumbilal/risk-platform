@@ -1,0 +1,68 @@
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv
+venv
+ENV
+env
+*.egg-info
+.eggs
+dist
+build
+.pytest_cache
+.mypy_cache
+.ruff_cache
+htmlcov
+.coverage
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.dylib
+*.test
+*.out
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+.docker
+
+# Documentation
+*.md
+LICENSE
+
+# Local config
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+logs
+
+# Models (if not needed in build)
+*.pt
+*.h5
+*.keras
+*_saved_model/
+
+# Claude
+.claude
+
+# OS
+.DS_Store
+Thumbs.db

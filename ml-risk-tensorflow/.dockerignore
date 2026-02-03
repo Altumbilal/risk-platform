@@ -1,0 +1,52 @@
+# Virtual environments
+.venv
+venv
+ENV
+env
+
+# Python cache
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info
+.eggs
+dist
+build
+.pytest_cache
+.mypy_cache
+.ruff_cache
+
+# IDE
+.vscode
+.idea
+*.swp
+
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Documentation
+*.md
+
+# Models (will be downloaded/trained in container)
+*.h5
+*.keras
+*_saved_model/
+trained_model*
+
+# Local config
+.env
+.env.*
+
+# Logs
+*.log
+
+# Tests
+tests/
+*_test.py
